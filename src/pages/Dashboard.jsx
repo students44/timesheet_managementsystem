@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { TimesheetTable } from '../components/TimesheetTable';
 import { TimesheetModal } from '../components/TimesheetModal';
+import { Footer } from '../components/Footer';
 import { Button } from '../components/ui/Button';
 import { Select } from '../components/ui/Select';
 import { api } from '../services/api';
@@ -148,6 +149,8 @@ export default function Dashboard() {
                     </div>
                 </div>
             </main>
+
+            <Footer />
 
             <TimesheetModal
                 isOpen={isModalOpen}
