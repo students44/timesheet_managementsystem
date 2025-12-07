@@ -82,11 +82,6 @@ export default function Login() {
                                     Remember me
                                 </label>
                             </div>
-                            <div className="text-sm">
-                                <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
-                                    Forgot password?
-                                </a>
-                            </div>
                         </div>
 
                         {error && (
@@ -108,9 +103,9 @@ export default function Login() {
 
             {/* Right Side - Branding */}
             <div className="hidden w-1/2 flex-col justify-center bg-blue-600 px-12 text-white lg:flex">
-                <div className="mx-auto max-w-lg">
+                <div className="mx-auto max-w-lg" style={{ maxWidth: '700px' }}>
                     <h1 className="mb-6 text-5xl font-bold">ticktock</h1>
-                    <p className="text-lg leading-relaxed opacity-90">
+                    <p className="text-lg leading-relaxed opacity-90 w-100">
                         Introducing ticktock, our cutting-edge timesheet web application designed
                         to revolutionize how you manage employee work hours. With ticktock, you
                         can effortlessly track and monitor employee attendance and productivity
