@@ -3,6 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import { TimesheetTable } from '../components/TimesheetTable';
 import { TimesheetModal } from '../components/TimesheetModal';
 import { Button } from '../components/ui/Button';
+import { Select } from '../components/ui/Select';
 import { api } from '../services/api';
 
 export default function Dashboard() {
@@ -90,16 +91,16 @@ export default function Dashboard() {
                 <div className="mb-8 rounded-lg bg-white p-6 shadow-sm">
                     <div className="mb-6 flex items-center justify-between">
                         <h2 className="text-xl font-semibold text-gray-900">Your Timesheets</h2>
-                        <div className="flex space-x-2">
-                            <select className="rounded-md border-gray-300 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                                <option>Date Range</option>
-                            </select>
-                            <select className="rounded-md border-gray-300 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                                <option>Status</option>
-                            </select>
-                        </div>
-                    </div>
 
+                    </div>
+                    <div className="flex space-x-3 mb-4">
+                        <Select>
+                            <option>Date Range</option>
+                        </Select>
+                        <Select>
+                            <option>Status</option>
+                        </Select>
+                    </div>
                     {loading ? (
                         <div className="text-center py-12">
                             <p className="text-gray-500">Loading timesheets...</p>

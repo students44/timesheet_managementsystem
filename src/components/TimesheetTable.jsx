@@ -2,10 +2,10 @@ import { clsx } from 'clsx';
 
 export function TimesheetTable({ timesheets, onEdit, onView }) {
     return (
-        <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
+        <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm mt-4">
             <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
-                    <tr>
+                    <tr className='bg-light'>
                         <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
                             Week #
                         </th>
@@ -23,7 +23,7 @@ export function TimesheetTable({ timesheets, onEdit, onView }) {
                 <tbody className="divide-y divide-gray-200 bg-white">
                     {timesheets.map((entry) => (
                         <tr key={entry.id} className="hover:bg-gray-50">
-                            <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-900">
+                            <td className="bg-gray-50 whitespace-nowrap px-6 py-4 text-sm text-gray-900">
                                 {entry.weekNumber}
                             </td>
                             <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
