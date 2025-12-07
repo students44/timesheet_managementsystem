@@ -10,13 +10,18 @@ export default function Dashboard() {
     const [timesheets, setTimesheets] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingEntry, setEditingEntry] = useState(undefined);
+    const [loading, setLoading] = useState(true);
 
     const fetchTimesheets = async () => {
         try {
+            console.log('Fetching timesheets...');
             const data = await api.getTimesheets();
+            console.log('Timesheets fetched:', data);
             setTimesheets(data);
+            setLoading(false);
         } catch (error) {
             console.error('Failed to fetch timesheets', error);
+            setLoading(false);
         }
     };
 
@@ -95,11 +100,21 @@ export default function Dashboard() {
                         </div>
                     </div>
 
-                    <TimesheetTable
-                        timesheets={timesheets}
-                        onEdit={openEditModal}
-                        onView={(entry) => console.log('View', entry)}
-                    />
+                    {loading ? (
+                        <div className="text-center py-12">
+                            <p className="text-gray-500">Loading timesheets...</p>
+                        </div>
+                    ) : timesheets.length === 0 ? (
+                        <div className="text-center py-12">
+                            <p className="text-gray-500">No timesheets found.</p>
+                        </div>
+                    ) : (
+                        <TimesheetTable
+                            timesheets={timesheets}
+                            onEdit={openEditModal}
+                            onView={(entry) => console.log('View', entry)}
+                        />
+                    )}
 
                     <div className="mt-4 flex items-center justify-between border-t border-gray-200 pt-4">
                         <div className="text-sm text-gray-500">5 per page</div>
