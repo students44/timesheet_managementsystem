@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { TimesheetTable } from '../components/TimesheetTable';
 import { TimesheetModal } from '../components/TimesheetModal';
@@ -7,6 +8,7 @@ import { Select } from '../components/ui/Select';
 import { api } from '../services/api';
 
 export default function Dashboard() {
+    const navigate = useNavigate();
     const { user, logout } = useAuth();
     const [timesheets, setTimesheets] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,6 +29,7 @@ export default function Dashboard() {
     };
 
     useEffect(() => {
+        console.log('Dashboard mounted, fetching timesheets...');
         fetchTimesheets();
     }, []);
 
@@ -113,7 +116,7 @@ export default function Dashboard() {
                         <TimesheetTable
                             timesheets={timesheets}
                             onEdit={openEditModal}
-                            onView={(entry) => console.log('View', entry)}
+                            onView={(entry) => navigate(`/timesheet/${entry.weekNumber}`)}
                         />
                     )}
 

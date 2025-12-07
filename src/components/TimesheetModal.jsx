@@ -11,9 +11,13 @@ const timesheetSchema = z.object({
     typeOfWork: z.string().min(1, 'Type of work is required'),
     description: z.string().min(10, 'Description must be at least 10 characters'),
     hours: z.number().min(1, 'Hours must be at least 1').max(24, 'Max 24 hours'),
+    startDate: z.string().min(1, 'Start date is required'),
 });
 
 export function TimesheetModal({ isOpen, onClose, onSubmit, initialData }) {
+    // Get today's date in YYYY-MM-DD format
+    const today = new Date().toISOString().split('T')[0];
+
     const {
         register,
         handleSubmit,
@@ -28,16 +32,20 @@ export function TimesheetModal({ isOpen, onClose, onSubmit, initialData }) {
             typeOfWork: '',
             description: '',
             hours: 8,
+            startDate: today,
         },
     });
 
     useEffect(() => {
+        const today = new Date().toISOString().split('T')[0];
+
         if (isOpen && initialData) {
             reset({
                 projectName: initialData.projectName || '',
                 typeOfWork: initialData.typeOfWork || '',
                 description: initialData.description || '',
                 hours: initialData.hours || 8,
+                startDate: initialData.startDate || today,
             });
         } else if (isOpen) {
             reset({
@@ -45,6 +53,7 @@ export function TimesheetModal({ isOpen, onClose, onSubmit, initialData }) {
                 typeOfWork: '',
                 description: '',
                 hours: 8,
+                startDate: today,
             });
         }
     }, [isOpen, initialData, reset]);
@@ -143,6 +152,21 @@ export function TimesheetModal({ isOpen, onClose, onSubmit, initialData }) {
                             {errors.hours && (
                                 <p className="mt-1 text-sm text-red-600">{errors.hours.message}</p>
                             )}
+                        </div>
+
+                        <div>
+                            <label className="mb-1 block text-sm font-medium text-gray-700">
+                                Start Date *
+                            </label>
+                            <input
+                                type="date"
+                                {...register('startDate')}
+                                className="block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+                            />
+                            {errors.startDate && (
+                                <p className="mt-1 text-sm text-red-600">{errors.startDate.message}</p>
+                            )}
+                            <p className="mt-1 text-xs text-gray-500">Select the date for this task</p>
                         </div>
                     </div>
 

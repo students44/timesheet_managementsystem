@@ -1,4 +1,5 @@
 import { clsx } from 'clsx';
+import { ArrowDown } from 'lucide-react';
 
 export function TimesheetTable({ timesheets, onEdit, onView }) {
     return (
@@ -7,13 +8,22 @@ export function TimesheetTable({ timesheets, onEdit, onView }) {
                 <thead className="bg-gray-50">
                     <tr className='bg-light'>
                         <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                            Week #
+                            <div className="flex items-center space-x-1 cursor-pointer hover:text-gray-700">
+                                <span>Week #</span>
+                                <ArrowDown className="h-3 w-3" />
+                            </div>
                         </th>
                         <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                            Date
+                            <div className="flex items-center space-x-1 cursor-pointer hover:text-gray-700">
+                                <span>Date</span>
+                                <ArrowDown className="h-3 w-3" />
+                            </div>
                         </th>
                         <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                            Status
+                            <div className="flex items-center space-x-1 cursor-pointer hover:text-gray-700">
+                                <span>Status</span>
+                                <ArrowDown className="h-3 w-3" />
+                            </div>
                         </th>
                         <th scope="col" className="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">
                             Actions
