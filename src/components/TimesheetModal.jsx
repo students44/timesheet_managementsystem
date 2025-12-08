@@ -130,21 +130,21 @@ export function TimesheetModal({ isOpen, onClose, onSubmit, initialData }) {
                             <label className="mb-1 block text-sm font-medium text-gray-700">
                                 Hours *
                             </label>
-                            <div className="flex items-center space-x-2">
+                            <div className="inline-flex items-stretch rounded-md border border-gray-300 overflow-hidden">
                                 <button
                                     type="button"
                                     onClick={() => setValue('hours', Math.max(1, hours - 1))}
-                                    className="rounded-md border border-gray-300 p-2 hover:bg-gray-50"
+                                    className="px-3 h-10 bg-gray-100 hover:bg-gray-200 border-r border-gray-300 flex items-center justify-center"
                                 >
                                     <Minus className="h-4 w-4 text-gray-600" />
                                 </button>
-                                <div className="flex h-10 w-16 items-center justify-center rounded-md border border-gray-300 bg-white text-sm font-medium">
+                                <div className="flex h-10 w-16 items-center justify-center bg-white text-sm font-medium">
                                     {hours}
                                 </div>
                                 <button
                                     type="button"
                                     onClick={() => setValue('hours', Math.min(24, hours + 1))}
-                                    className="rounded-md border border-gray-300 p-2 hover:bg-gray-50"
+                                    className="px-3 h-10 bg-gray-100 hover:bg-gray-200 border-l border-gray-300 flex items-center justify-center"
                                 >
                                     <Plus className="h-4 w-4 text-gray-600" />
                                 </button>
