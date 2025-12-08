@@ -7,6 +7,9 @@ import { Footer } from '../components/Footer';
 import { Button } from '../components/ui/Button';
 import { Select } from '../components/ui/Select';
 import { api } from '../services/api';
+import '../App.css';
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
+
 
 export default function Dashboard() {
     const navigate = useNavigate();
@@ -72,7 +75,7 @@ export default function Dashboard() {
             <header className="bg-white shadow-sm">
                 <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
                     <div className="flex items-center">
-                        <h1 className="text-2xl font-bold text-gray-900">ticktock</h1>
+                        <h1 className="text-2xl font-bold text-gray-900 logo-text">ticktock</h1>
                         <span className="ml-4 text-sm text-gray-500">Timesheets</span>
                     </div>
                     <div className="flex items-center space-x-4">
@@ -122,8 +125,13 @@ export default function Dashboard() {
                     )}
 
                     <div className="mt-4 flex items-center justify-between border-t border-gray-200 pt-4">
-                        <div className="text-sm text-gray-500">5 per page</div>
-                        <div className="inline-flex items-stretch rounded-md border border-gray-300 overflow-hidden">
+                        <div className="text-sm text-gray-50 border text-black rounded-lg pegi-text flex">
+
+
+                            5 per page <ChevronDownIcon className="w-4 h-4 mt-1 ms-1" />
+
+                        </div>
+                        <div className="inline-flex items-stretch rounded-md border border-gray-300 overflow-hidden pegi-container">
                             <button disabled className="px-3 py-1 text-sm font-medium text-gray-400 bg-gray-50 cursor-not-allowed flex items-center justify-center">
                                 Previous
                             </button>

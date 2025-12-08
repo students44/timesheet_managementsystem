@@ -101,8 +101,7 @@ export default function Login() {
                 </div>
             </div>
 
-            {/* Right Side - Branding */}
-            <div className="hidden w-1/2 flex-col justify-center bg-blue-600 px-12 text-white lg:flex">
+            <div className="hidden lg:flex flex-1 flex-col justify-center bg-blue-600 px-12 text-white">
                 <div className="mx-auto max-w-lg" style={{ maxWidth: '700px' }}>
                     <h1 className="mb-6 text-5xl font-bold">ticktock</h1>
                     <p className="text-lg leading-relaxed opacity-90 w-100">
@@ -113,6 +112,7 @@ export default function Login() {
                     </p>
                 </div>
             </div>
+
         </div>
     );
 }

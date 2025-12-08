@@ -4,6 +4,7 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import WeeklyTimesheet from './pages/WeeklyTimesheet';
 
+
 const ProtectedRoute = ({ children }) => {
   const { user } = useAuth();
   if (!user) {

@@ -1,9 +1,10 @@
 import { clsx } from 'clsx';
 import { ArrowDown } from 'lucide-react';
+import '../App.css';
 
 export function TimesheetTable({ timesheets, onEdit, onView }) {
     return (
-        <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm mt-4">
+        <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm mt-4 main-table">
             <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                     <tr className='bg-light'>
