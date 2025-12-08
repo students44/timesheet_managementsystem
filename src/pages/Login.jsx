@@ -42,8 +42,6 @@ export default function Login() {
             <div className="flex w-full flex-col justify-center bg-white px-8 py-12 lg:w-1/2 lg:px-24">
                 <div className="mx-auto w-full max-w-md">
                     <h2 className="mb-2 text-3xl font-bold text-gray-900">Welcome back</h2>
-                    <p className="mb-8 text-gray-500">Please enter your details to sign in.</p>
-
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                         <Input
                             label="Email"

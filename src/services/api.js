@@ -43,6 +43,8 @@ export const api = {
 
     // Create a new timesheet entry
     createTimesheet: async (data) => {
+
+        console.log(data);
         try {
             const response = await fetch(`${API_BASE_URL}/timesheets`, {
                 method: 'POST',
