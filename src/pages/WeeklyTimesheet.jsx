@@ -189,18 +189,7 @@ export default function WeeklyTimesheet() {
                                 <div key={weekday.date}>
                                     <h3 className="mb-3 text-base font-semibold text-gray-900">{weekday.date}</h3>
                                     <div className="space-y-2">
-                                        {/* Add new task button at top */}
-                                        <button
-                                            onClick={() => {
-                                                setSelectedDate(weekday.fullDate);
-                                                setIsModalOpen(true);
-                                            }}
-                                            className="flex w-full items-center justify-center rounded-lg border-2 border-dashed border-blue-300 bg-blue-50 py-3 text-sm font-medium text-blue-600 hover:bg-blue-100"
-                                        >
-                                            + Add new task
-                                        </button>
-
-                                        {/* Task list - tasks append below */}
+                                        {/* Task list - tasks appear first */}
                                         {dayTasks.map((task) => (
                                             <div
                                                 key={task.id}
@@ -243,6 +232,17 @@ export default function WeeklyTimesheet() {
                                                 </div>
                                             </div>
                                         ))}
+
+                                        {/* Add new task button at bottom */}
+                                        <button
+                                            onClick={() => {
+                                                setSelectedDate(weekday.fullDate);
+                                                setIsModalOpen(true);
+                                            }}
+                                            className="flex w-full items-center justify-center rounded-lg border-2 border-dashed border-blue-300 bg-blue-50 py-3 text-sm font-medium text-blue-600 hover:bg-blue-100"
+                                        >
+                                            + Add new task
+                                        </button>
                                     </div>
                                 </div>
                             );
