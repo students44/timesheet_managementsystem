@@ -42,4 +42,15 @@ export let timesheets = [
         description: 'Fixed critical bugs',
         hours: 20,
     },
+    {
+        id: '4',
+        weekNumber: 51,
+        startDate: '2025-12-16',
+        endDate: '2025-12-20',
+        status: 'MISSING',
+        projectName: '',
+        typeOfWork: '',
+        description: '',
+        hours: 0,
+    },
 ];

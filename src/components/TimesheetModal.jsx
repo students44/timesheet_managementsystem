@@ -55,7 +55,9 @@ export function TimesheetModal({ isOpen, onClose, onSubmit, initialData }) {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm">
             <div className="w-full max-w-lg rounded-xl bg-white shadow-2xl">
                 <div className="flex items-center justify-between border-b px-6 py-4">
-                    <h2 className="text-xl font-semibold text-gray-900">Add New Entry</h2>
+                    <h2 className="text-xl font-semibold text-gray-900">
+                        {initialData?.status === 'MISSING' ? 'Add New Entry' : initialData?.id ? 'Update Entry' : 'Add New Entry'}
+                    </h2>
                     <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
                         <X className="h-5 w-5" />
                     </button>
@@ -171,7 +173,7 @@ export function TimesheetModal({ isOpen, onClose, onSubmit, initialData }) {
 
                     <div className="mt-8 flex space-x-3">
                         <Button type="submit" className="flex-1 bg-blue-600 hover:bg-blue-700">
-                            Add entry
+                            {initialData?.status === 'MISSING' ? 'Add entry' : initialData?.id ? 'Update entry' : 'Add entry'}
                         </Button>
                         <Button
                             type="button"

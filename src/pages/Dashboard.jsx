@@ -65,7 +65,18 @@ export default function Dashboard() {
     };
 
     const openEditModal = (entry) => {
-        setEditingEntry(entry);
+        // For MISSING status, clear the form but keep the ID for updating
+        if (entry.status === 'MISSING') {
+            setEditingEntry({
+                ...entry,
+                projectName: '',
+                typeOfWork: '',
+                description: '',
+                hours: 8,
+            });
+        } else {
+            setEditingEntry(entry);
+        }
         setIsModalOpen(true);
     };
 
@@ -167,7 +178,7 @@ export default function Dashboard() {
             <TimesheetModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
-                onSubmit={editingEntry ? handleUpdate : handleCreate}
+                onSubmit={editingEntry?.id ? handleUpdate : handleCreate}
                 initialData={editingEntry}
             />
         </div>

@@ -4,7 +4,7 @@ import { calculateWeekData } from '@/lib/helpers';
 
 // GET single timesheet by ID
 export async function GET(request, { params }) {
-    const { id } = params;
+    const { id } = (await params);
     const timesheet = timesheets.find(t => t.id === id);
 
     if (!timesheet) {
@@ -20,7 +20,7 @@ export async function GET(request, { params }) {
 // PUT - Update timesheet
 export async function PUT(request, { params }) {
     try {
-        const { id } = params;
+        const { id } = (await params);
         const updatedData = await request.json();
 
         const index = timesheets.findIndex(t => t.id === id);
@@ -44,6 +44,7 @@ export async function PUT(request, { params }) {
             ...timesheets[index],
             ...updatedData,
             hours: updatedData.hours ? parseInt(updatedData.hours) : timesheets[index].hours,
+            status: 'COMPLETED', // Mark as completed when updated
         };
 
         console.log('Updated timesheet:', timesheets[index]);
@@ -58,7 +59,7 @@ export async function PUT(request, { params }) {
 
 // DELETE - Delete timesheet
 export async function DELETE(request, { params }) {
-    const { id } = params;
+    const { id } = (await params);
     const index = timesheets.findIndex(t => t.id === id);
 
     if (index === -1) {
