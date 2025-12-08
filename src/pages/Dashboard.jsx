@@ -123,28 +123,26 @@ export default function Dashboard() {
 
                     <div className="mt-4 flex items-center justify-between border-t border-gray-200 pt-4">
                         <div className="text-sm text-gray-500">5 per page</div>
-                        <div className="flex space-x-2">
-                            <Button variant="ghost" size="sm" disabled>
+                        <div className="inline-flex items-stretch rounded-md border border-gray-300 overflow-hidden">
+                            <button disabled className="px-3 py-1 text-sm font-medium text-gray-400 bg-gray-50 cursor-not-allowed flex items-center justify-center">
                                 Previous
-                            </Button>
-                            <div className="flex items-center space-x-1">
-                                <button className="rounded px-2 py-1 text-sm font-medium text-blue-600 bg-blue-50">
-                                    1
-                                </button>
-                                <button className="rounded px-2 py-1 text-sm font-medium text-gray-500 hover:bg-gray-50">
-                                    2
-                                </button>
-                                <button className="rounded px-2 py-1 text-sm font-medium text-gray-500 hover:bg-gray-50">
-                                    3
-                                </button>
-                                <span className="px-2 text-gray-500">...</span>
-                                <button className="rounded px-2 py-1 text-sm font-medium text-gray-500 hover:bg-gray-50">
-                                    99
-                                </button>
-                            </div>
-                            <Button variant="ghost" size="sm">
+                            </button>
+                            <button className="px-3 py-1 text-sm font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 border-l border-gray-300 flex items-center justify-center">
+                                1
+                            </button>
+                            <button className="px-3 py-1 text-sm font-medium text-gray-600 bg-white hover:bg-gray-50 border-l border-gray-300 flex items-center justify-center">
+                                2
+                            </button>
+                            <button className="px-3 py-1 text-sm font-medium text-gray-600 bg-white hover:bg-gray-50 border-l border-gray-300 flex items-center justify-center">
+                                3
+                            </button>
+                            <span className="px-3 py-1 text-gray-500 border-l border-gray-300 flex items-center justify-center">...</span>
+                            <button className="px-3 py-1 text-sm font-medium text-gray-600 bg-white hover:bg-gray-50 border-l border-gray-300 flex items-center justify-center">
+                                99
+                            </button>
+                            <button className="px-3 py-1 text-sm font-medium text-gray-600 bg-white hover:bg-gray-50 border-l border-gray-300 flex items-center justify-center">
                                 Next
-                            </Button>
+                            </button>
                         </div>
                     </div>
                 </div>

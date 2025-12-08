@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (email, password) => {
         // Dummy authentication
-        if (email === 'user@example.com' && password === 'password123') {
+        if (email === 'muneebtech005@gmail.com' && password === 'muneebtech005') {
             const userData = { id: '1', name: 'John Doe', email };
             setUser(userData);
             localStorage.setItem('user', JSON.stringify(userData));
