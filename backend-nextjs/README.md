@@ -121,8 +121,8 @@ export let users = [
     {
         id: '1',
         name: 'John Doe',
-        email: 'muneebtech005@gmail.com',  // ← Change here
-        password: 'muneebtech005',          // ← Change here
+        email: 'muneeb005@gmail.com',  // ← Change here
+        password: 'muneeb005',          // ← Change here
     },
 ];
 ```
