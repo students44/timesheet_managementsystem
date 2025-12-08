@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
+import { api } from '../services/api';
 
 const AuthContext = createContext(null);
 
@@ -15,14 +16,25 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     const login = async (email, password) => {
-        // Dummy authentication
-        if (email === 'muneebtech005@gmail.com' && password === 'muneebtech005') {
-            const userData = { id: '1', name: 'John Doe', email };
+        try {
+            // Call the real API login endpoint
+            const response = await api.login(email, password);
+
+            // Store user data with token
+            const userData = {
+                id: response.user?.id || response.id,
+                name: response.user?.name || response.name,
+                email: response.user?.email || email,
+                token: response.token
+            };
+
             setUser(userData);
             localStorage.setItem('user', JSON.stringify(userData));
             return { success: true };
+        } catch (error) {
+            console.error('Login failed:', error);
+            return { success: false, error: error.message || 'Invalid email or password' };
         }
-        return { success: false, error: 'Invalid email or password' };
     };
 
     const logout = () => {

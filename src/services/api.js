@@ -1,84 +1,104 @@
-// Mock data - December 2025
-let timesheets = [
-    {
-        id: '1',
-        weekNumber: 48,
-        startDate: '2025-11-25',
-        endDate: '2025-11-29',
-        status: 'COMPLETED',
-        projectName: 'Homepage Development',
-        hours: 40,
-    },
-    {
-        id: '2',
-        weekNumber: 49,
-        startDate: '2025-12-02',
-        endDate: '2025-12-06',
-        status: 'COMPLETED',
-        projectName: 'Homepage Development',
-        hours: 40,
-    },
-    {
-        id: '3',
-        weekNumber: 50,
-        startDate: '2025-12-09',
-        endDate: '2025-12-13',
-        status: 'INCOMPLETE',
-        projectName: 'Homepage Development',
-        hours: 20,
-    },
-    {
-        id: '4',
-        weekNumber: 51,
-        startDate: '2025-12-16',
-        endDate: '2025-12-20',
-        status: 'COMPLETED',
-        projectName: 'Homepage Development',
-        hours: 40,
-    },
-    {
-        id: '5',
-        weekNumber: 52,
-        startDate: '2025-12-23',
-        endDate: '2025-12-27',
-        status: 'MISSING',
-    },
-];
+// API Base URL - can be configured via environment variable
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+
+const handleResponse = async (response) => {
+    if (!response.ok) {
+        const error = await response.json().catch(() => ({ message: 'An error occurred' }));
+        throw new Error(error.message || `HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+};
+
+// Helper function to get auth token if needed
+const getAuthHeaders = () => {
+    const user = localStorage.getItem('user');
+    const headers = {
+        'Content-Type': 'application/json',
+    };
+
+    if (user) {
+        const userData = JSON.parse(user);
+        if (userData.token) {
+            headers['Authorization'] = `Bearer ${userData.token}`;
+        }
+    }
+
+    return headers;
+};
 
 export const api = {
+
     getTimesheets: async () => {
-        // Simulate network delay
-        await new Promise((resolve) => setTimeout(resolve, 500));
-        return [...timesheets];
-    },
-
-    createTimesheet: async (data) => {
-        await new Promise((resolve) => setTimeout(resolve, 500));
-        const newEntry = {
-            id: Math.random().toString(36).substring(7),
-            ...data,
-            weekNumber: 6, // Mock logic
-            startDate: '2024-02-05',
-            endDate: '2024-02-09',
-            status: 'COMPLETED',
-        };
-        timesheets.push(newEntry);
-        return newEntry;
-    },
-
-    updateTimesheet: async (id, data) => {
-        await new Promise((resolve) => setTimeout(resolve, 500));
-        const index = timesheets.findIndex((t) => t.id === id);
-        if (index !== -1) {
-            timesheets[index] = { ...timesheets[index], ...data };
-            return timesheets[index];
+        try {
+            const response = await fetch(`${API_BASE_URL}/timesheets`, {
+                method: 'GET',
+                headers: getAuthHeaders(),
+            });
+            return await handleResponse(response);
+        } catch (error) {
+            console.error('Error fetching timesheets:', error);
+            throw error;
         }
-        throw new Error('Timesheet not found');
     },
 
+    // Create a new timesheet entry
+    createTimesheet: async (data) => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/timesheets`, {
+                method: 'POST',
+                headers: getAuthHeaders(),
+                body: JSON.stringify(data),
+            });
+            return await handleResponse(response);
+        } catch (error) {
+            console.error('Error creating timesheet:', error);
+            throw error;
+        }
+    },
+
+    // Update an existing timesheet
+    updateTimesheet: async (id, data) => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/timesheets/${id}`, {
+                method: 'PUT',
+                headers: getAuthHeaders(),
+                body: JSON.stringify(data),
+            });
+            return await handleResponse(response);
+        } catch (error) {
+            console.error('Error updating timesheet:', error);
+            throw error;
+        }
+    },
+
+    // Delete a timesheet
     deleteTimesheet: async (id) => {
-        await new Promise((resolve) => setTimeout(resolve, 500));
-        timesheets = timesheets.filter((t) => t.id !== id);
-        return { success: true };
+        try {
+            const response = await fetch(`${API_BASE_URL}/timesheets/${id}`, {
+                method: 'DELETE',
+                headers: getAuthHeaders(),
+            });
+            return await handleResponse(response);
+        } catch (error) {
+            console.error('Error deleting timesheet:', error);
+            throw error;
+        }
+    },
+
+    // Login endpoint (if you have authentication in your backend)
+    login: async (email, password) => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/auth/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
+            return await handleResponse(response);
+        } catch (error) {
+            console.error('Error logging in:', error);
+            throw error;
+        }
     },
 };

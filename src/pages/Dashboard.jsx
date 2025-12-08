@@ -124,35 +124,41 @@ export default function Dashboard() {
                         />
                     )}
 
-                    <div className="mt-4 flex items-center justify-between border-t border-gray-200 pt-4">
-                        <div className="text-sm text-gray-50 border text-black rounded-lg pegi-text flex">
+                    <div className="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between border-t border-gray-200 pt-4 gap-3">
 
-
-                            5 per page <ChevronDownIcon className="w-4 h-4 mt-1 ms-1" />
-
+                        {/* 5 per page box */}
+                        <div className="text-sm  border text-black rounded-lg pegi-text flex w-full sm:w-auto justify-between sm:justify-start px-2 py-1">
+                            5 per page
+                            <ChevronDownIcon className="w-4 h-4 mt-1 ms-1" />
                         </div>
-                        <div className="inline-flex items-stretch rounded-md border border-gray-300 overflow-hidden pegi-container">
-                            <button disabled className="px-3 py-1 text-sm font-medium text-gray-400 bg-gray-50 cursor-not-allowed flex items-center justify-center">
+
+                        {/* Pagination container */}
+                        <div className="inline-flex items-stretch rounded-md border border-gray-300 overflow-hidden pegi-container w-full sm:w-auto">
+                            <button disabled className="px-3 py-1 text-sm font-medium text-gray-400 bg-gray-50 cursor-not-allowed flex items-center justify-center w-full sm:w-auto">
                                 Previous
                             </button>
-                            <button className="px-3 py-1 text-sm font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 border-l border-gray-300 flex items-center justify-center">
+                            <button className="px-3 py-1 text-sm font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 border-l border-gray-300 flex items-center justify-center w-full sm:w-auto">
                                 1
                             </button>
-                            <button className="px-3 py-1 text-sm font-medium text-gray-600 bg-white hover:bg-gray-50 border-l border-gray-300 flex items-center justify-center">
+                            <button className="px-3 py-1 text-sm font-medium text-gray-600 bg-white hover:bg-gray-50 border-l border-gray-300 flex items-center justify-center w-full sm:w-auto">
                                 2
                             </button>
-                            <button className="px-3 py-1 text-sm font-medium text-gray-600 bg-white hover:bg-gray-50 border-l border-gray-300 flex items-center justify-center">
+                            <button className="px-3 py-1 text-sm font-medium text-gray-600 bg-white hover:bg-gray-50 border-l border-gray-300 flex items-center justify-center w-full sm:w-auto">
                                 3
                             </button>
-                            <span className="px-3 py-1 text-gray-500 border-l border-gray-300 flex items-center justify-center">...</span>
-                            <button className="px-3 py-1 text-sm font-medium text-gray-600 bg-white hover:bg-gray-50 border-l border-gray-300 flex items-center justify-center">
+                            <span className="px-3 py-1 text-gray-500 border-l border-gray-300 flex items-center justify-center w-full sm:w-auto">
+                                ...
+                            </span>
+                            <button className="px-3 py-1 text-sm font-medium text-gray-600 bg-white hover:bg-gray-50 border-l border-gray-300 flex items-center justify-center w-full sm:w-auto">
                                 99
                             </button>
-                            <button className="px-3 py-1 text-sm font-medium text-gray-600 bg-white hover:bg-gray-50 border-l border-gray-300 flex items-center justify-center">
+                            <button className="px-3 py-1 text-sm font-medium text-gray-600 bg-white hover:bg-gray-50 border-l border-gray-300 flex items-center justify-center w-full sm:w-auto">
                                 Next
                             </button>
                         </div>
+
                     </div>
+
                 </div>
             </main>
 

@@ -1,18 +1,8 @@
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 import { Button } from './ui/Button';
 import { Input } from './ui/Input';
 import { X, Plus, Minus } from 'lucide-react';
 import { useEffect } from 'react';
-
-const timesheetSchema = z.object({
-    projectName: z.string().min(1, 'Project is required'),
-    typeOfWork: z.string().min(1, 'Type of work is required'),
-    description: z.string().min(10, 'Description must be at least 10 characters'),
-    hours: z.number().min(1, 'Hours must be at least 1').max(24, 'Max 24 hours'),
-    startDate: z.string().min(1, 'Start date is required'),
-});
 
 export function TimesheetModal({ isOpen, onClose, onSubmit, initialData }) {
     // Get today's date in YYYY-MM-DD format
@@ -26,7 +16,6 @@ export function TimesheetModal({ isOpen, onClose, onSubmit, initialData }) {
         reset,
         formState: { errors },
     } = useForm({
-        resolver: zodResolver(timesheetSchema),
         defaultValues: {
             projectName: '',
             typeOfWork: '',
@@ -79,7 +68,9 @@ export function TimesheetModal({ isOpen, onClose, onSubmit, initialData }) {
                                 Select Project *
                             </label>
                             <select
-                                {...register('projectName')}
+                                {...register('projectName', {
+                                    required: 'Project is required'
+                                })}
                                 className="block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
                             >
                                 <option value="">Project Name</option>
@@ -97,7 +88,9 @@ export function TimesheetModal({ isOpen, onClose, onSubmit, initialData }) {
                                 Type of Work *
                             </label>
                             <select
-                                {...register('typeOfWork')}
+                                {...register('typeOfWork', {
+                                    required: 'Type of work is required'
+                                })}
                                 className="block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
                             >
                                 <option value="">Select Type</option>
@@ -115,7 +108,13 @@ export function TimesheetModal({ isOpen, onClose, onSubmit, initialData }) {
                                 Task description *
                             </label>
                             <textarea
-                                {...register('description')}
+                                {...register('description', {
+                                    required: 'Description is required',
+                                    minLength: {
+                                        value: 10,
+                                        message: 'Description must be at least 10 characters'
+                                    }
+                                })}
                                 rows={4}
                                 className="block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
                                 placeholder="Write text here ..."

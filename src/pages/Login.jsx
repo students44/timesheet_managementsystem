@@ -1,16 +1,9 @@
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
-
-const loginSchema = z.object({
-    email: z.string().email('Invalid email address'),
-    password: z.string().min(6, 'Password must be at least 6 characters'),
-});
 
 export default function Login() {
     const navigate = useNavigate();
@@ -22,9 +15,7 @@ export default function Login() {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm({
-        resolver: zodResolver(loginSchema),
-    });
+    } = useForm();
 
     const onSubmit = async (data) => {
         setIsLoading(true);
@@ -59,7 +50,13 @@ export default function Login() {
                             type="email"
                             placeholder="name@example.com"
                             error={errors.email?.message}
-                            {...register('email')}
+                            {...register('email', {
+                                required: 'Email is required',
+                                pattern: {
+                                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                    message: 'Invalid email address'
+                                }
+                            })}
                         />
 
                         <Input
@@ -67,7 +64,13 @@ export default function Login() {
                             type="password"
                             placeholder="••••••••"
                             error={errors.password?.message}
-                            {...register('password')}
+                            {...register('password', {
+                                required: 'Password is required',
+                                minLength: {
+                                    value: 6,
+                                    message: 'Password must be at least 6 characters'
+                                }
+                            })}
                         />
 
                         <div className="flex items-center justify-between">
